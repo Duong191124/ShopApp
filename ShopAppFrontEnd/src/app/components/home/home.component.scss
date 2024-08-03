@@ -1,0 +1,100 @@
+.intro-section {
+    text-align: center;
+    color: #000;
+    padding: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-box {
+    width: 250px;
+    border-color: #000;
+}
+
+.select-box option {
+    color: #000;
+}
+
+.search-input {
+    width: 400px;
+    color: #000;
+    margin-right: 10px;
+    background-color: #000;
+    border-color: #000;
+}
+
+.form-control {
+    background-color: transparent;
+    color: #000;
+}
+
+.form-control::placeholder {
+    color: #000;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 29px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title, .card-text {
+    margin-bottom: 0.5rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-lg-4, .col-md-6 {
+    display: flex;
+    align-items: stretch;
+}
+.product-image {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.product-name {
+    color: #000;
+    cursor: pointer;
+}
+
+.product-description {
+    color: #000;
+    cursor: pointer;
+}
+
+.product-price {
+    color: #000;
+}
+
+.product-rating {
+    color: yellow;
+    margin-top: 10px;
+}
+
+.product-action {
+    display: flex;
+    justify-content: start;
+    margin-top: 20px;
+}

@@ -1,0 +1,30 @@
+h2{
+    color: #fff;
+    padding: 10px;
+}
+
+.button{
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#sidebar{
+    background-color: #034afc !important;
+    color: #fff;
+    height: 100vh;
+}
+
+#sidebar a{
+    color: #fff;
+    border-top: 1px solid gray;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#sidebar a.active{
+    font-weight: bold;
+}
+
+#sidebar a:hover{
+    background-color: aqua;
+}

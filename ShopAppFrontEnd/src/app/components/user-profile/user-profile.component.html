@@ -1,0 +1,24 @@
+<app-header></app-header>
+<form [formGroup]="userProfileForm">
+    <div class="row">
+        <div class="col-md-3 mx-auto">
+            <h2 class="product-header">Thông tin người dùng</h2>
+            <div class="mb-2">
+                <label for="fullname" class="form-label">Họ và tên</label>
+                <input type="text" formControlName="fullname" class="form-control" id="fullname">
+            </div>
+            <div class="mb-2">
+                <label for="address" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" formControlName="address" required id="address">
+            </div>
+            <div class="mb-2">
+                <label for="date_of_birth" class="form-label">Ngày sinh</label>
+                <input type="date" class="form-control" formControlName="date_of_birth" required id="date_of_birth">
+            </div>
+            <div class="text-center mt-3">
+                <button class="btn btn-primary" (click)="save()" type="button">Lưu</button>
+            </div>
+        </div>
+    </div>
+</form>
+<app-footer></app-footer>

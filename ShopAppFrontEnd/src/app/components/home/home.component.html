@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="intro-section">
+        <h1>Đây là trang home</h1>
+        <p>Hiển thị sản phẩm</p>
+    </div>
+    <!-- Đoạn code này có 1 ô search box bên trái, 1 combobox bên phải -->
+    <div class="search-box">
+        <input type="text" class="form-control search-input"
+                [(ngModel)]="keyword"
+                placeholder="Tìm sản phẩm">
+        <select name="" class="form-control select-box" [(ngModel)]="selectedCategoryId" id="">
+            <option [value]="0">Tất cả</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <button class="btn btn-primary ms-2" (click)="searchProducts()">Tìm kiếm</button>
+    </div>
+    <br>
+    <div class="row d-flex">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" *ngFor="let product of productResponseList">
+            <div class="product-item card">
+                <img [src]="product.url" (click)="onProductClick(product.id)" alt="Product Image" class="product-image card-img-top">
+                <div class="card-body">
+                    <h3 class="product-name card-title" (click)="onProductClick(product.id)">{{product.name}}</h3>
+                    <p class="product-description card-text">{{product.description}}</p>
+                    <p class="product-price card-text">Giá: ${{product.price}}</p>
+                    <div class="product-action mt-auto">
+                        <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+                        <button class="btn btn-success ms-2">Mua ngay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" *ngIf="currentPage > 1">
+                <a class="page-link" href="#" (click)="onPageChange(1)">First</a>
+            </li>
+            <li class="page-item" *ngIf="currentPage > 1">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)">Previous</a>
+            </li>
+            <ng-container *ngFor="let page of visiblePages">
+                <li class="page-item" [ngClass]="{'active': page === currentPage}">
+                <a class="page-link" href="#" (click)="onPageChange(page)"> {{page}} </a>
+            </li>
+            </ng-container>
+            <li class="page-item" *ngIf="currentPage < totalPages">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)">Next</a>
+            </li>
+            <li class="page-item" *ngIf="currentPage < totalPages">
+                <a class="page-link" href="#" (click)="onPageChange(totalPages)">Last</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="container">
+    <form #loginForm="ngForm">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="login-form mx-auto">
+                    <h2 class="login-header">Đăng nhập</h2>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone</label>
+                        <input type="text" 
+                        [(ngModel)]="phoneNumber"
+                              required name="phoneNumber"
+                        class="form-control" id="phoneNumber">
+                        <div class="divider-nospace"></div>
+                    </div>
+                    <div class="mt-5"></div>
+                    <div class="form-group password-field">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" [(ngModel)]="password" name="password" placeholder="Tối thiểu 3 ký tự" id="password" class="form-control">
+                        <i class="password-toggle fa-solid fa-eye"></i>
+                        <div class="divider-nospace"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check checkbox-text">
+                            <span style="display: flex;">
+                                <input type="checkbox" id="remember" name="remember" [(ngModel)]="rememberMe" class="form-check-input">
+                                <label for="remember" class="form-check-label text-start">
+                                    Ghi nhớ đăng nhập
+                                </label>
+                            </span>
+                            <a href="#" class="register-link">Quên mật khẩu</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control access-right" name="selectedRole" [(ngModel)]="selectedRole">
+                            <option selected disabled>Quyền truy cập</option>
+                            <option *ngFor="let role of roles" [ngValue]="role"> {{role.name}} </option>
+                        </select>
+                    </div>
+                    <button class="login-button" (click)="login()" type="button">Đăng nhập</button>
+                    <div class="divider"></div>
+                    <p class="text-center">Bạn chưa đăng ký <span><a routerLink="/register" class="register-link">Tạo tài khoản</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>

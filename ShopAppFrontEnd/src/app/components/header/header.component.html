@@ -1,0 +1,41 @@
+<header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="{'active' : activeNavItem === 0}" (click)="setActiveNavItem(0)" routerLink="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="{'active' : activeNavItem === 1}" (click)="setActiveNavItem(1)" routerLink="/">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="{'active' : activeNavItem === 2}" (click)="setActiveNavItem(2)" routerLink="/orders"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <ng-container *ngIf="userResponse">
+                            <a routerLink="/user-profile" class="nav-link">
+                                {{userResponse.fullname}}
+                            </a>
+                        </ng-container>
+                        <ng-container *ngIf="!userResponse">
+                            <a class="nav-link" [ngClass]="{'active' : activeNavItem === 3}" (click)="setActiveNavItem(3)" routerLink="/login">Đăng nhập</a>
+                        </ng-container>
+                    </li>
+                    <li class="nav-item">
+                        <ng-container *ngIf="userResponse">
+                            <a href="" class="nav-link" (click)="logout()">Đăng xuất</a>
+                        </ng-container>
+                        <ng-container *ngIf="!userResponse">
+                            <a href="" class="nav-link" hidden></a>
+                        </ng-container>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

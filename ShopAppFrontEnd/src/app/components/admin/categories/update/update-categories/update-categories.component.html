@@ -1,0 +1,16 @@
+@if(updatedCategory) {
+<div>
+    <!-- Form cập nhật thông tin sản phẩm -->
+    <div class="ms-2">
+        <h3>Update Category</h3>
+        <form (ngSubmit)="updateCategory()">
+            <div class="form-group mb-3">
+                <label for="name">Name:</label>
+                <input type="text" id="name" [(ngModel)]="updatedCategory.name" name="name" class="form-control"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+}

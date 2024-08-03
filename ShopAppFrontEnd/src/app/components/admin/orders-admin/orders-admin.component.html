@@ -1,0 +1,88 @@
+<h1>Orders Admin Page</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User Id</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Note</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Total Money</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(order of orders; track order.id){
+        <tr>
+            <td>
+                {{ order.id }}</td>
+            <td>{{ order.user_id }}</td>
+            <td>{{ order.fullname }}</td>
+            <td>{{ order.email }}</td>
+            <td>{{ order.phone_number }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.note }}</td>
+            <td>{{ order.order_date | date }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.total_money }}</td>
+            <td>
+                <div style="display: flex; gap: 10px;">
+                    <button (click)="OnOrderClick(order)" class="btn btn-primary">
+                        View Details
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteOrder(order.id)">Delete</button>
+                </div>
+            </td>
+        </tr>
+        }
+        <ng-container *ngFor="let o of orders">
+            <tr>
+                <td>{{o.id}}</td>
+                <td>{{o.user_id}}</td>
+                <td>{{o.fullname}}</td>
+                <td>{{o.email}}</td>
+                <td>{{o.phone_number}}</td>
+                <td>{{o.address}}</td>
+                <td>{{o.note}}</td>
+                <td>{{o.order_date}}</td>
+                <td>{{o.status}}</td>
+                <td>{{o.total_money}}</td>
+                <td>{{o.shipping_method}}</td>
+                <td>{{o.shipping_address}}</td>
+                <td>{{o.shipping_date}}</td>
+                <td>{{o.payment_method}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="OnOrderClick(o)">View detail</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" *ngIf="currentPage > 1">
+                <a class="page-link" (click)="onPageChange(1)">First</a>
+            </li>
+            <li class="page-item" *ngIf="currentPage > 1">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+            </li>
+            <ng-container *ngFor="let page of visiblePages">
+                <li class="page-item" [ngClass]="{'active': page === currentPage}">
+                    <a class="page-link" (click)="onPageChange(page)"> {{page}} </a>
+                </li>
+            </ng-container>
+            <li class="page-item" *ngIf="currentPage < totalPages">
+                <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+            </li>
+            <li class="page-item" *ngIf="currentPage < totalPages">
+                <a class="page-link" (click)="onPageChange(totalPages)">Last</a>
+            </li>
+        </ul>
+    </nav>
+</div>

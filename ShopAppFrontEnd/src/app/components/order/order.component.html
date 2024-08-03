@@ -1,0 +1,118 @@
+<app-header></app-header>
+<div class="container">
+    <div class="intro-section">
+        <h1>Đây là trang Order</h1>
+        <p>Sử dụng Bootstrap</p>
+    </div>
+    <form [formGroup]="orderForm">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="product-header">Thông tin người nhận</h2>
+                <div class="mb-2">
+                    <label for="fullname" class="form-label">Họ và tên</label>
+                    <input type="text" formControlName="fullname"
+                        [class.is-invalid]="orderForm.get('fullname')?.invalid && orderForm.get('fullname')?.touched"
+                        class="form-control" id="fullname">
+                    <div class="invalid-feedback"
+                        *ngIf="orderForm.get('fullname')?.invalid && orderForm.get('fullname')?.touched">
+                        Họ và tên là trường bắt buộc
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email"
+                        [class.is-invalid]="orderForm.get('email')?.invalid && orderForm.get('email')?.touched"
+                        id="email">
+                    <div class="invalid-feedback"
+                        *ngIf="orderForm.get('email')?.invalid && orderForm.get('email')?.touched">
+                        Email sai định dạng
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="phone_number" class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" formControlName="phone_number"
+                        [class.is-invalid]="orderForm.get('phone_number')?.invalid && orderForm.get('phone_number')?.touched"
+                        required id="phone_number">
+                    <div class="invalid-feedback"
+                        *ngIf="orderForm.get('phone_number')?.invalid && orderForm.get('phone_number')?.touched">
+                        Số điện thoại là trường bắt buộc và ít nhất 6 ký tự
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="address" class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" formControlName="address"
+                        [class.is-invalid]="orderForm.get('address')?.invalid && orderForm.get('address')?.touched"
+                        required id="address">
+                    <div class="invalid-feedback"
+                        *ngIf="orderForm.get('address')?.invalid && orderForm.get('address')?.touched">
+                        Địa chỉ là trường bắt buộc và ít nhất 5 ký tự
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="note" class="form-label">Ghi chú</label>
+                    <input type="text" class="form-control" formControlName="note" required id="note">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="shipping_method">Phương thức vận chuyển</label>
+                    <select name="" id="shipping_method" class="form-control" formControlName="shipping_method">
+                        <option value="express">Nhanh (express)</option>
+                        <option value="normal">Thường (normal)</option>
+                    </select>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="payment_method">Phương thức thanh toán</label>
+                    <select name="" id="payment_method" class="form-control" formControlName="payment_method">
+                        <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                        <option value="other">Thanh toán khác</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="product-order">Sản phẩm đã đặt hàng</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-start">Sản phẩm</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Tổng giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of cartItems">
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img [src]="item.product.thumbnail" alt="" class="product-image">
+                                        <span class="product-name">{{item.product.name}}</span>
+                                    </div>
+                                </td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.product.price | currency: 'USD':'symbol':'1.1-1'}}</td>
+                                <td>{{(item.product.price * item.quantity) | currency: 'USD':'symbol':'1.1-1'}}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+                <div class="text-start mt-3">
+                    <h4 class="header-text text-end">
+                        Tổng tiền: {{totalAmount | currency: 'USD':'symbol':'1.1-1'}}
+                    </h4>
+                </div>
+                <div class="mt-2">
+                    <h4 class="product-header">
+                        Nhập coupon
+                    </h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Nhập coupon">
+                        <button class="btn btn-success" type="button">Áp dụng</button>
+                    </div>
+                </div>
+                <div class="text-start mt-3">
+                    <button class="btn btn-primary" (click)="placeOrder()" type="button">Đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>
