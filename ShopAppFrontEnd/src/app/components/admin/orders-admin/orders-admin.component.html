@@ -39,28 +39,6 @@
             </td>
         </tr>
         }
-        <ng-container *ngFor="let o of orders">
-            <tr>
-                <td>{{o.id}}</td>
-                <td>{{o.user_id}}</td>
-                <td>{{o.fullname}}</td>
-                <td>{{o.email}}</td>
-                <td>{{o.phone_number}}</td>
-                <td>{{o.address}}</td>
-                <td>{{o.note}}</td>
-                <td>{{o.order_date}}</td>
-                <td>{{o.status}}</td>
-                <td>{{o.total_money}}</td>
-                <td>{{o.shipping_method}}</td>
-                <td>{{o.shipping_address}}</td>
-                <td>{{o.shipping_date}}</td>
-                <td>{{o.payment_method}}</td>
-                <td>
-                    <button type="button" class="btn btn-primary" (click)="OnOrderClick(o)">View detail</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </ng-container>
     </tbody>
 </table>
 <div class="d-flex justify-content-center">
